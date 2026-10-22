@@ -106,11 +106,17 @@ class Backtester:
             self._trend[trend_len] = trend_filter(self.bench, trend_len)
         return self._trend[trend_len]
 
+    def signal(self, ma_type: str, ma_len: int, buy_pct: float, sell_pct: float,
+               trend_len: int) -> np.ndarray:
+        return positions(self.px, self.ma.get(ma_len, ma_type), buy_pct / 100, sell_pct / 100,
+                         self.trend(trend_len))
+
+    def returns(self, pos: np.ndarray) -> np.ndarray:
+        return strategy_returns(self.px, self.ret, self.rf, pos, self.cost)
+
     def run(self, ma_type: str, ma_len: int, buy_pct: float, sell_pct: float,
             trend_len: int) -> np.ndarray:
-        pos = positions(self.px, self.ma.get(ma_len, ma_type), buy_pct / 100, sell_pct / 100,
-                        self.trend(trend_len))
-        return strategy_returns(self.px, self.ret, self.rf, pos, self.cost)
+        return self.returns(self.signal(ma_type, ma_len, buy_pct, sell_pct, trend_len))
 
     def buy_and_hold(self) -> np.ndarray:
         return self.ret.copy()
