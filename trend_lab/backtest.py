@@ -90,13 +90,13 @@ def metrics(r: np.ndarray, rf: np.ndarray) -> dict[str, np.ndarray]:
 
 
 class Backtester:
-    def __init__(self, price: pd.DataFrame, rf_daily: pd.Series, bench: str = "SPY",
+    def __init__(self, price: pd.DataFrame, rf_daily: pd.Series, bench: str | pd.Series = "SPY",
                  cost: float = 0.001):
         self.price = price
         self.px = price.to_numpy()
         self.ret = price.pct_change(fill_method=None).to_numpy()
         self.rf = rf_daily.reindex(price.index).ffill().fillna(0.0).to_numpy()
-        self.bench = price[bench]
+        self.bench = price[bench] if isinstance(bench, str) else bench.reindex(price.index)
         self.cost = cost
         self.ma = MACache(price)
         self._trend: dict[int, np.ndarray] = {}
