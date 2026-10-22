@@ -3,3 +3,7 @@ pandas
 pyarrow
 scipy
 matplotlib
+pytest
+# 실전 실행용
+yfinance
+requests

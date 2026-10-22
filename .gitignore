@@ -1,2 +1,6 @@
 __pycache__/
 *.pyc
+autotrader/state/
+autotrader/config.json
+.kis_token.json
+.pytest_cache/

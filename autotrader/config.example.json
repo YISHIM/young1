@@ -1,0 +1,17 @@
+{
+  "mode": "paper",
+  "data_source": "yfinance",
+  "bench": "SPY",
+  "budget_usd": 10000,
+  "cost": 0.001,
+  "limit_buffer": 0.005,
+  "params": {"ma_type": "EMA", "ma_len": 100, "buy_pct": 1.5, "sell_pct": 4.0, "trend_len": 225, "leverage": 1.0},
+  "universe": {
+    "SPY": "AMEX", "QQQ": "NASD", "DIA": "AMEX", "IWM": "AMEX", "MDY": "AMEX",
+    "XLK": "AMEX", "XLF": "AMEX", "XLE": "AMEX", "XLV": "AMEX", "XLY": "AMEX",
+    "XLP": "AMEX", "XLI": "AMEX", "XLU": "AMEX", "XLB": "AMEX"
+  },
+  "paper_state": "autotrader/state/paper.json",
+  "log_file": "autotrader/state/orders.csv",
+  "i_understand_live_trading": false
+}
