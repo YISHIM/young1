@@ -1,0 +1,7 @@
+{
+  "ma_type": "EMA",
+  "ma_len": 100,
+  "buy_pct": 1.5,
+  "sell_pct": 4.0,
+  "trend_len": 225
+}
